@@ -1,0 +1,794 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* This is to remove outline when the input field is focused on */
+input{
+    outline: none;
+}
+/* This is to remove outline when the input field is focused on */
+input:focus{
+    outline: none;
+    border: none;
+}
+section{
+    position: relative;
+    min-height: 100vh;
+    max-width: 100vw;
+    width: 100%;
+    padding: 30px 50px;
+    background-color: #f8f8f8;
+    color: black;
+}
+.headSection{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.heading{
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    font-family: 'Italiana', sans-serif;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+/* Filter button styling */
+.filterBtn{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 10px;
+    cursor: pointer;
+    width: auto;
+    height: 40px;
+    align-self: flex-end;
+    border: none;
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    background-color: #e3e3e3;
+    color: black;
+    /* overflow: hidden; */
+}
+
+.filterName{
+    width: auto;
+    transition: 0.5s ease;
+}
+
+/* Span for filter drop down icon */
+.filterBtn .filterArrow{
+    margin-right: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+    background-color: #CCB67D;
+    height: inherit;
+    width: 30px;
+    top: 0;
+    right: 0;
+}
+
+/* Container which contains all the filter categories */
+.filterBy{
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    top: 80px;
+    right: 0;
+    font-family: 'Poppins', sans-serif;
+    width: 200px;
+    background-color: #e3e3e3;
+    border-radius: 4px;
+    box-shadow: 4px 2px 15px rgba(0, 0, 0, 0.43);
+    z-index: 10;
+}
+.filterBy.Clicked{
+    display: flex;
+}
+
+/* Individual filters */
+.filterBy li{
+    padding: 10px 20px;
+    list-style: none;
+}
+
+.filterBy li:hover{
+    background-color: #d4d4d4;
+}
+
+
+.availableRoomsContainer{
+    display: flex;
+    align-items: flex-start;
+    justify-content: left;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px 0;
+}
+
+.availableRoom{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 250px;
+    background-color: rgb(234, 234, 234);
+    padding: 10px 9px;
+}
+
+.availableRoomImgContainer{
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    max-width: 100%;
+    width: 100%;
+    max-height: 150px ;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+.availableRoomImgContainer img{
+    width: calc(100% + 50px); /* inherits 100% width from parent and adds 50px */
+}
+
+.roomName{
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 10px;
+    font-size: 17px;
+}
+
+.roomTypeAndNumber{
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    margin-top: 5px;
+}
+.roomType, .roomNo{
+    padding: 0 8px 0 0;
+}
+.roomType{
+    border-right: 2px solid black;
+}
+.priceContainer{
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    align-self: flex-end;
+    margin: 5px 0;
+}
+.BookRoomBtn{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    padding: 5px 0;
+    width: 100%;
+    outline: none;
+    background-color: #CCB67D;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    overflow: hidden;
+    border: 2px solid #00000000;
+    transition: border 0.3s ease ;
+}
+
+.BookRoomBtn.booked{
+    pointer-events: none;
+    cursor: not-allowed;
+    filter: saturate(0%);
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.BookRoomBtn:hover{
+    border: 2px solid #000000;
+}
+
+.BookRoomBtn span{
+    position: relative;
+    z-index: 5;
+}
+
+.BookRoomBtn::before{
+    content: '';
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    background: #000000;
+    transition: width 0.5s, opacity 0.5s linear, height 0.3s linear;
+}
+.BookRoomBtn::after{
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background-color: rgba(255, 255, 255, 0);
+    transition: 0.5s ease;
+    z-index: 4;
+}
+
+.BookRoomBtn.animate::after {
+    animation: buttonClick 1s linear forwards;
+}
+
+@keyframes buttonClick{
+    0%{
+        transform: scale(100%);
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    100%{
+        transform: scale(3000%);
+        background-color: rgba(255, 255, 255, 0);
+    }
+}
+
+.BookRoomBtn:hover::before{
+    width: 101%;
+    opacity: 1;
+    height: 100%;
+}
+
+.roomImgModal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0, 0, 0,0.5);
+    min-height: 100vh;
+    height: 100%;
+    max-width: 100vw;
+    width: 100%;
+    z-index: 5000;
+}
+
+#room-img-modal-close-btn{
+    position: fixed;
+    z-index: 5;
+    right: 10px;
+    top: 10px;
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    background-color: rgb(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 3px;
+    backdrop-filter: blur(5px);
+}
+
+.roomImgModalContent{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 950px;
+    max-height: 700px !important;
+    height: 800px;
+    padding: 20px;
+    overflow-y: auto !important;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.roomImgTop{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.roomImgContainer{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    min-width: 300px;
+    width: 55%;
+    height: auto;
+    flex-grow: 1;
+}
+
+.roomImgContainer button{
+    position: absolute;
+    outline: 0;
+    border: 0;
+    bottom: 10px;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.roomImgContainer button#prev-btn{left: 10px;}
+.roomImgContainer button#next-btn{left: 60px;}
+
+.roomImgContainer img{
+    width: calc(100% * 1);
+}
+
+.roomImgModalRoomInfo{
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #f3f3f3;
+    width: 30%;
+    max-height: 250px;
+    min-width: 200px;
+    flex-grow: 1;
+}
+
+.roomImgModalRoomInfo h2{
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+}
+
+.roomImgModalRoomInfo p{
+    font-family: 'Poppins', sans-serif;
+    text-align: justify;
+    font-size: 13px;
+    max-height: 70%;
+    overflow-y: auto;
+
+    margin-bottom: 10px;
+}
+
+.roomImgThumbnailsContainer{
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px;
+    background-color: rgb(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.roomImgThumbnailsContainer:hover{
+    opacity: 1;
+}
+
+.roomImgThumbnails{
+    width: 70px;
+    height: 50px;
+    overflow: hidden;
+}
+.roomImgThumbnails.active {
+    border: 2px solid #FFD700;
+}
+
+.roomImgThumbnails img{
+    width: calc(100%*1.2);
+}
+
+.amenitiesContainer h2{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+.amenities{
+    display: flex;
+    gap: 20px 40px;
+    flex-wrap: wrap;
+    max-height: 300px;
+    padding: 30px;
+}
+.amenities li{
+    background-color: #f4f4f4;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 4px;
+    text-align: left;
+    padding: 5px;
+    list-style: square;
+}
+
+.bookingModal{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    height: 100%;
+    max-width: 100vw;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+}
+
+.modalContent{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 550px;
+    min-height: 550px;
+    height: auto !important;
+    width: 100%;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    max-height: 600px;
+    padding: 10px;
+}
+
+.modalTop{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    justify-content: center;
+}
+.modalTop h1{
+    font-family: 'Orbitron', sans-serif;
+}
+
+.closeModal{
+    position: absolute;
+    cursor: pointer;
+    background-color: #e3e3e3;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+}
+
+.modalContent h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    padding: 20px 20px 0 20px;
+}
+
+.allInfo{
+    min-height: 550px;
+    max-height: 600px;
+    height: 100%;
+}
+
+.modalContent h3{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 15px;
+    padding: 0 20px 20px 20px;
+}
+.modalContent h3::before{
+    content: '';
+    position: absolute;
+    width: 40%;
+    height: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom: 2px dotted grey;
+}
+
+.information{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    margin-bottom: 10px;
+}
+
+/* This is for all the input field containers, i even used it for other forms */
+.modalFieldContainers{
+    width: 45%;
+    min-width: 160px;
+    min-height: 40px;
+    height: 40px;
+    position: relative;
+    margin-top: 15px;
+    flex-grow: 1;
+}
+
+/* Styling for input fields and text areas here */
+.modalFieldContainers input, 
+.modalFieldContainers span{
+    background-color: rgba(255, 255, 255, 0);
+    padding-left: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid grey;
+    border-radius: 5px;
+    text-align:left;
+    overflow: hidden;
+    color:black;
+}
+
+.modalFieldContainers input:-webkit-autofill,
+.modalFieldContainers input:-webkit-autofill:hover, 
+.modalFieldContainers input:-webkit-autofill:focus,
+.modalFieldContainers textarea:-webkit-autofill,
+.modalBody textarea:-webkit-autofill:hover,
+.modalFieldContainers textarea:-webkit-autofill:focus,
+.modalFieldContainers select:-webkit-autofill,
+.modalFieldContainers select:-webkit-autofill:hover,
+.modalFieldContainers select:-webkit-autofill:focus {
+  /* border: 1px solid #43434600; */
+  -webkit-text-fill-color: black;
+  -webkit-box-shadow: 0 0 0 1000px  #f8f8f8 inset;
+  background-clip: padding-box;
+  background-color: #f8f8f8;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Stying for pop up form number input */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    height: 37px;
+    margin: 0;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.modalFieldContainers span{
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    background-color: #e5e5e5;
+    border: none;
+    gap: 5px;
+}
+
+/* Change the state of the label on input field focus and if content is in it */
+.modalFieldContainers input:focus~label,
+.modalFieldContainers input.hasValue~label {
+    pointer-events: none;
+    font-size: 11px;
+    transform: translateY(-16px);
+    color: #CCB67D;
+}
+
+/* Styling for the input fields label text which displays what field that is for */
+.modalFieldContainers label{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    top: 9px;
+    left: 10px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: grey;
+    padding: 0 5px;
+    background-color: #f8f8f8;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
+/* Styling to change the color of the input fields borders when focused */
+.modalFieldContainers input:focus,
+.modalFieldContainers input.hasValue {
+    border: 2px solid #CCB67D;
+    transition: border-bottom 0.5s;
+}
+
+.bookingButtons{
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+    width: 100%;
+    padding: 15px 20px;
+    border-top: 1px solid #d4d4d4;
+}
+
+.bookingButtons button{
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    padding: 12px 15px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+}
+.bookingButtons button#proceed-booking{
+    background-color: #48ab9d;
+    color: white;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 10px;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+}
+
+.close-conflict-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media (max-width: 700px){
+    section{
+        padding: 20px;
+    }
+
+    .modalContent{
+        overflow-y: auto;
+    }
+
+    .heading{
+        font-size: 17px;
+    }
+
+    .filterBtn{
+        font-size: 14px;
+    }
+
+    .availableRoomsContainer{
+        display: flex;
+        gap: 20px;
+    }
+
+    .availableRoom{
+        height: 230px;
+        gap: 3px;
+        width: 150px;
+    }
+
+    .roomName{
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .roomTypeAndNumber{
+        gap: 5px;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    .roomType, .roomNo{
+        padding: 0 5px 0 0;
+    }
+    .roomType{
+        border-right: 2px solid black;
+    }
+    .priceContainer{
+        font-size: 14px;
+    }
+    .BookRoomBtn{
+        padding: 5px 0;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 600px) {
+    .roomImgModalContent{
+        max-width: 95vw;
+        max-height: 600px;
+    }
+
+    .roomImgContainer{
+        min-width: 200px;
+        width: 100%;
+    }
+
+    .roomImgContainer button{
+        bottom: 5px;
+        padding: 3px 8px;
+    }
+
+    .roomImgContainer button#prev-btn{left: 10px;}
+    .roomImgContainer button#next-btn{left: 50px;}
+
+    .roomImgContainer img{
+        width: calc(100% * 1);
+    }
+
+    .roomImgModalRoomInfo{
+        width: 100%;
+        max-height: 400px;
+    }
+
+    .roomImgModalRoomInfo h2{
+        font-size: 16px;
+    }
+
+    .roomImgModalRoomInfo p{
+        font-size: 12px;
+        max-height: 70%;
+    }
+
+    .roomImgThumbnailsContainer{
+        padding: 6px;
+        opacity: 1;
+        transition: none;
+    }
+
+    .roomImgThumbnails{
+        width: 40px;
+        height: auto;
+        overflow: hidden;
+    }
+    .roomImgThumbnails img{
+        width: calc(100%*1);
+    }
+
+    .amenitiesContainer h2{
+        font-size: 16px;
+    }
+
+    .amenities{
+        gap: 10px 30px;
+        max-height: 500px;
+        padding: 20px 5px;
+    }
+    .amenities li{
+        border-radius: 3px;
+        font-size: 14px;
+        list-style: none;
+    }
+}

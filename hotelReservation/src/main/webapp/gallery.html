@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .roomImgModal{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(0, 0, 0,0.5);
+            min-height: 100vh;
+            height: 100%;
+            max-width: 100vw;
+            width: 100%;
+        }
+
+        #room-img-modal-close-btn{
+            position: absolute;
+            z-index: 5;
+            right: 10px;
+            top: 10px;
+            padding: 5px 10px;
+            outline: none;
+            border: none;
+            background-color: rgb(0, 0, 0, 0.5);
+            color: white;
+            border-radius: 3px;
+            backdrop-filter: blur(5px);
+        }
+
+        .roomImgModalContent{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 950px;
+            max-height: 900px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            overflow-y: auto;
+        }
+
+        .roomImgTop{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .roomImgContainer{
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            min-width: 300px;
+            width: 55%;
+            height: auto;
+            flex-grow: 1;
+        }
+
+        .roomImgContainer button{
+            position: absolute;
+            outline: 0;
+            border: 0;
+            bottom: 10px;
+            padding: 5px 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            color: white;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        
+        .roomImgContainer button#prev-btn{left: 10px;}
+        .roomImgContainer button#next-btn{left: 60px;}
+
+        .roomImgContainer img{
+            width: calc(100% * 1);
+        }
+
+        .roomImgModalRoomInfo{
+            padding: 10px;
+            border-radius: 6px;
+            background-color: #f3f3f3;
+            width: 30%;
+            max-height: 250px;
+            min-width: 200px;
+            flex-grow: 1;
+        }
+
+        .roomImgModalRoomInfo h2{
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        .roomImgModalRoomInfo p{
+            font-family: 'Poppins', sans-serif;
+            text-align: justify;
+            font-size: 13px;
+            max-height: 70%;
+            overflow-y: auto;
+
+            margin-bottom: 10px;
+        }
+
+        .roomImgThumbnailsContainer{
+            position: absolute;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            bottom: 10px;
+            right: 10px;
+            padding: 10px;
+            background-color: rgb(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .roomImgThumbnailsContainer:hover{
+            opacity: 1;
+        }
+
+        .roomImgThumbnails{
+            width: 70px;
+            height: 50px;
+            overflow: hidden;
+        }
+        .roomImgThumbnails img{
+            width: calc(100%*1.2);
+        }
+        
+        .amenitiesContainer h2{
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+        }
+
+        .amenities{
+            display: flex;
+            gap: 20px 40px;
+            flex-wrap: wrap;
+            max-height: 300px;
+            padding: 30px;
+        }
+        .amenities li{
+            background-color: #f4f4f4;
+            font-family: 'Poppins', sans-serif;
+            border-radius: 4px;
+            text-align: left;
+            padding: 5px;
+            list-style: square;
+        }
+
+        @media (max-width: 600px) {
+            .roomImgModalContent{
+                max-width: 95vw;
+                max-height: 600px;
+            }
+
+            .roomImgContainer{
+                min-width: 200px;
+                width: 100%;
+            }
+
+            .roomImgContainer button{
+                bottom: 5px;
+                padding: 3px 8px;
+            }
+            
+            .roomImgContainer button#prev-btn{left: 10px;}
+            .roomImgContainer button#next-btn{left: 50px;}
+
+            .roomImgContainer img{
+                width: calc(100% * 1);
+            }
+
+            .roomImgModalRoomInfo{
+                width: 100%;
+                max-height: 400px;
+            }
+
+            .roomImgModalRoomInfo h2{
+                font-size: 16px;
+            }
+
+            .roomImgModalRoomInfo p{
+                font-size: 12px;
+                max-height: 70%;
+            }
+
+            .roomImgThumbnailsContainer{
+                padding: 6px;
+                opacity: 1;
+                transition: none;
+            }
+
+            .roomImgThumbnails{
+                width: 40px;
+                height: auto;
+                overflow: hidden;
+            }
+            .roomImgThumbnails img{
+                width: calc(100%*1);
+            }
+            
+            .amenitiesContainer h2{
+                font-size: 16px;
+            }
+
+            .amenities{
+                gap: 10px 30px;
+                max-height: 500px;
+                padding: 20px 5px;
+            }
+            .amenities li{
+                border-radius: 3px;
+                font-size: 14px;
+                list-style: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Room Gallery Modal -->
+    <div class="roomImgModal">
+        <!-- Room Gallery Modal Content -->
+        <div class="roomImgModalContent">
+            <!-- Close button to close the modal -->
+            <button id="room-img-modal-close-btn">✕</button>
+            <!-- Top section of the modal -->
+            <div class="roomImgTop">
+                <!-- Room image container to house the room images and thumbnails -->
+                <div class="roomImgContainer">
+                    <!-- Room Image Here this will be added dynamically -->
+                    <img src="Images/RoomImages/Room_101/image-1.jpg" alt="">
+                    <!-- Room Thumbnails Container to house each image thumbnails -->
+                    <div class="roomImgThumbnailsContainer">
+                        <!-- Each individual thumbnail container -->
+                        <div class="roomImgThumbnails">
+                            <!-- Image thumbnail -->
+                            <img src="Images/RoomImages/Room_101/Thumbnails/image-1.jpg" alt="">
+                        </div>
+                        <!-- Each Individual Thumbnail container -->
+                        <div class="roomImgThumbnails">
+                            <!-- Image thumbnail -->
+                            <img src="Images/RoomImages/Room_101/Thumbnails/image-2.jpg" alt="">
+                        </div>
+                    </div>
+                    <!-- Navigation buttons to navigate between images -->
+                    <button id="prev-btn">❮</button>
+                    <button id="next-btn">❯</button>
+                </div>
+                <!-- Room Info -->
+                <div class="roomImgModalRoomInfo">
+                    <!-- Room Name (This wil be added dynamically for the particular room clicked) -->
+                    <h2 class="roomImgModalRoomName">Serenity</h2>
+                    <!-- Room Description (This too will be added dynamically) -->
+                    <p class="roomImgModalRoomDescription">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis recusandae iste architecto, praesentium est, modi distinctio corrupti voluptatibus dolores saepe repudiandae! Necessitatibus, cupiditate! Nam harum, sapiente pariatur eius ullam doloremque.</p>
+                    <!-- Book button to open the booking modal and form for the particular room -->
+                    <button class="BookRoomBtn">BOOK NOW</button>
+                </div>
+            </div>
+
+            <!-- Room Amenities Container -->
+            <div class="amenitiesContainer">
+                <!--amenities-room-type will be added dynamically this will depend on the room type that is clicked  -->
+                <h2><span id="amenities-room-type">Standard </span> Room Amenities</h2>
+                <!-- Room Amenities -->
+                <ul class="amenities">
+                    <li>1 Double or 2 Single Beds</li>
+                    <li>Flat Screen TV</li>
+                    <li>Telephone</li>
+                    <li>Wifi *Upon Request*</li>
+                    <li>Individually Controlled A/C & Heating</li>
+                    <li>Electronic Lock Key System</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,3409 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.6em;
+}
+
+
+/* ================== CODE FOR THE LOADING SCREEN ================================= */
+.loadingScreen{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    max-width: 100vw;
+    width: 100%;
+    background-color: #000000;
+    z-index: 10000;
+}
+
+body.loading-active {
+    overflow: hidden !important;
+}
+
+.loader {
+width: 100px;
+aspect-ratio: 1;
+border-radius: 50%;
+border: 5px solid #d3b037;
+animation:
+    l20-1 0.8s infinite linear alternate,
+    l20-2 1.6s infinite linear;
+}
+
+.loaderLogo{
+    position: absolute;
+    width: 50px;
+    animation: loaderIcon 1s ease-in-out 0s infinite normal forwards;
+}
+
+@keyframes l20-1{
+0%    {clip-path: polygon(50% 50%,0       0,  50%   0%,  50%    0%, 50%    0%, 50%    0%, 50%    0% )}
+12.5% {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100%   0%, 100%   0%, 100%   0% )}
+25%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 100% 100%, 100% 100% )}
+50%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+62.5% {clip-path: polygon(50% 50%,100%    0, 100%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+75%   {clip-path: polygon(50% 50%,100% 100%, 100% 100%,  100% 100%, 100% 100%, 50%  100%, 0%   100% )}
+100%  {clip-path: polygon(50% 50%,50%  100%,  50% 100%,   50% 100%,  50% 100%, 50%  100%, 0%   100% )}
+}
+@keyframes l20-2{ 
+0%    {transform:scaleY(1)  rotate(0deg)}
+49.99%{transform:scaleY(1)  rotate(135deg)}
+50%   {transform:scaleY(-1) rotate(0deg)}
+100%  {transform:scaleY(-1) rotate(-135deg)}
+}
+
+@keyframes loaderIcon{
+    0%{
+        transform: scale(100%);
+    }
+    50%{
+        transform: scale(75%);
+    }
+    100%{
+        transform: scale(100%);
+    }
+}
+
+/* =============================== END OF CODE FOR THE LOADING SCREEN ======================= */
+
+/* =============START OF THE STYLING FOR THE LANDING PAGE WHICH IS PAGE 1 */
+.landingPage{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 100vw;
+    width: 100%;
+    max-height: 100vh;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Styling for the navigation menu */
+nav{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+    width: 100%;
+    z-index: 100;
+    background-color: transparent;
+    transition: 0.2s ease;
+    box-shadow: 1px 1px 10px black;
+}
+
+.nav-black {
+    background-color: #000;
+}
+
+/* Styling for the Logo Container which includes the logo and the text */
+.logoContaier{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Jost', sans-serif;
+    font-size: 25px;
+    color: #D3B037;
+}
+/* For the size of the Logo */
+.logoContaier img{
+    width: 50px;
+}
+
+/* Nav ul styling */
+nav ul{
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    gap: 30px;
+}
+nav ul li{
+    list-style: none;
+}
+nav ul li a{
+    position: relative;
+    text-decoration: none;
+    color: white;
+}
+
+/* Nav CTA button styling */
+nav .navCTAButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: none;
+    width: 150px;
+    height: 50px;
+}
+
+/* Style to know which nav links is currently active */
+nav ul li a.navActive {
+    transition: 0.3s ease;
+    color: #D3B037; /* active text color */
+}
+/* nav bar links hover effect */
+nav ul li a::after{
+    content: '';
+    max-width: 100px;
+    width: 0;
+    height: 3px;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    transition: width 0.5s;
+}
+
+nav ul li a:hover::after{
+    width: 100%;
+}
+nav ul li a.navActive::after {
+    width: 100%;
+    background-color: #D3B037; /* active after element color */
+}
+
+/* Hamburger Menu Styling*/
+.menuIcon{
+    display: none;
+    width: 30px;
+    color: #D3B037;
+    cursor: pointer;
+}
+/* Nav Responsive view styling */
+.navResponsive{display: none;}
+.heroSectionCTA .navRespCTAButton{display: none;}
+
+/* Styling for the hero section content */
+.heroSectionContent{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    top: 100px;
+}
+
+/* Hero section background images styling */
+.heroSectionContent .heroSectionBG{
+    position: absolute;
+    min-width: 100vw;
+    top: -120px;
+    left: 0;
+    z-index: -1;
+}
+
+/* Styling for the content of the Hero section */
+.heroSectionContent .pageSliderItem {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: red; */
+    width: 100vw;
+    z-index: 2;
+    flex-direction: column;
+    padding: 0 80px;
+    height: 500px;
+    text-align: left;
+    font-family: 'Jost', sans-serif;
+
+}
+/* Hero section p tag styling */
+.pageSliderItem p{
+    max-width: 500px;
+    font-size: 50px;
+    margin-top: 60px;
+    font-family: 'Jost', sans-serif;
+    color: white;
+}
+/* This class is added dynamically with js so when the h1 moves to the  top
+the i could edit the styling for the margin  */
+.pageSliderItem .heroH1Modified{
+    margin-top: 60px;
+}
+
+.pageSliderItem .heroH1Modified~p{
+    margin-top: 0;
+}
+
+/* Hero section content h1 styling  */
+.pageSliderItem .heroH1Default, .pageSliderItem .heroH1Modified{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 80px;
+    max-width: 800px;
+    background: linear-gradient(90deg, #D3B037 0%, #917907 100%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+/* Before and after effects that add side lines to the h1 */
+.pageSliderItem h1::before,.pageSliderItem h1::after{
+    align-self: center;
+    content: '';
+    height: 5px;
+    width: 40px;
+    background-color: #D3B037;
+}
+.pageSliderItem h1::after{
+    background-color: #917907;
+}
+
+/* Styling for the call to action buttons in the Hero section */
+.pageSliderItem .heroSectionCTA{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.pageSliderItem .heroSectionCTA a{
+    width: 200px;
+}
+
+/* This is button style 1, i added this class to easily apply this style to
+other buttons i want this effect to be applied on, so it is reusable */
+.buttonStyle1{
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    background-color: #D3B037;
+    color: black;
+    padding: 15px 20px;
+    height: 50px;
+    font-size: 17px;
+    text-decoration: none;
+    text-align: center;
+    /* overflow: hidden; */
+    border: 2px solid #00000000;
+    transition: border 0.3s ease, color 0.3s ease;
+}
+
+/* Hover Effect */
+.buttonStyle1:hover{
+    border: 2px solid #000000;
+    color: white;
+}
+
+/* Span added to prevent the before psuedoclass element from covering the button text */
+.buttonStyle1 span{
+    width: 100%;
+    z-index: 5;
+}
+
+/* psuedoclass for the effect */
+.buttonStyle1::before{
+    content: '';
+    width: 0;
+    height: 90%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    background: #000000;
+    transition: width 0.5s, opacity 0.5s linear, height 0.3s linear;
+}
+
+.buttonStyle1:hover::before{
+    width: 100%;
+    opacity: 1;
+    height: 100%;
+}
+
+/* This is button style 2, i added this class to easily apply this style to
+other buttons i want this effect to be applied on, so it is reusable */
+.buttonStyle2{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    margin: 10px 0;
+    padding: 10px 15px;
+    outline: none;
+    border: 2px solid #D3B037;
+    background-color: #3c00ff00;
+    color: #D3B037;
+    font-size: 17px;
+    cursor: pointer;
+    /* overflow: hidden; */
+    transition: border 0.2s linear 0.1s, color 0.5s ease;
+}
+
+/* Hover effect */
+.buttonStyle2:hover{
+    border: 2px solid rgba(255, 255, 255, 0);
+    color: #D3B037;
+}
+
+/* psuedoclass for the effect */
+.buttonStyle2::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    border: 2px solid #3c00ff00;
+    transform: translate(-40%, -50%);
+    transition: 0.5s ease;
+}
+
+.buttonStyle2:hover::before{
+    transform: translate(-50%, -0%);
+    border: 2px solid #D3B037;
+}
+
+/* This is button style 3, i added this class to easily apply this style to
+other buttons i want this effect to be applied on, so it is reusable */
+.buttonStyle3{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 50px;
+    margin: 10px 0;
+    padding: 10px 15px;
+    outline: none;
+    border: 2px solid #D3B037;
+    background-color: #3c00ff00;
+    color: #D3B037;
+    font-size: 17px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border 0.2s linear 0.1s, color 0.5s ease;
+}
+.buttonStyle3:hover{
+    border: 1px solid #00000000;
+}
+
+
+/* psuedoclass for the effect */
+.buttonStyle3::after{
+    content: '';
+    display: flex;
+    align-items: center;
+    color: black;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 15px;
+    margin-bottom: -70px;
+    transform: translateY(10px);
+    background-color: #D3B037;
+    width: inherit;
+    min-height: 45px;
+    transition: 0.5s ease;
+}
+
+.navCTAButton::after{
+    content: 'BOOK NOW';
+}
+
+.buttonStyle3:hover::after{
+    margin-bottom: 30px;
+    transform: translateY(1px);
+}
+
+
+/* Styling for the mini gallery, this is the container housing the three of them */
+.miniGallery{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    bottom: -30px;
+    right: 30px;
+}
+
+/* This border is what houses the images but the purpose of it being here is to apply
+the gradient border effect which you see in the html using ::before without it overlapping the image */
+.miniGalleryImgContainerBorder{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+/*Mini-gallery Hover effects */
+.miniGalleryImgContainerBorder:hover{
+    box-shadow: 2px 2px 5px 5px black;
+}
+/* ::before for the gradient border */
+.miniGalleryImgContainerBorder::before{
+    content: '';
+    position: absolute;
+    background: linear-gradient(90deg, #D3B037 0%, #917907 100%);
+    width: inherit;
+    height: inherit;
+    transform: scale(106%);
+}
+/* Container housing the mini-gallery image this is to ensure and force that 
+the images have the same width and height */
+.miniGalleryImgContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: inherit;
+    height: inherit;
+    overflow: hidden;
+    z-index: 2;
+}
+
+/* Size of the image, i used a larger size so i will fill up the entire Container */
+.miniGalleryImgContainer img{
+    width: 180px;
+
+}
+
+/* The dots or rectangle used to navigate the hero section image slider */
+.landingPage .dots{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-end;
+    color: #fff;
+    top: 200px;
+    right: 30px;
+    z-index: 5;
+    gap: 10px;
+    /* background-color: red; */
+    height: 300px;
+
+}
+
+/* Individual dots or rectangle */
+.landingPage .dots li{
+    cursor: pointer;
+    list-style: none;
+    width: 30px;
+    height: 6px;
+    background-color: #ffffff81;
+    transition: 0.2s;
+}
+/* active class added to the dots to know when it is active or which image it is on
+This class was added dynamically in the js*/
+.landingPage .dots li.active{
+    background-color: #D3B037;
+    width: 35px;
+    height: 6px;
+}
+
+/* Styling of the mini gallery modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    gap: 20px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content{
+    position: relative;
+}
+/* Styling of the Modal Title */
+.modalTitle{
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    z-index: 1001;
+    font-family: 'Just', sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #D3B037;
+    padding: 10px 20px;
+    background-color: black;
+}
+
+/* Container to house the modal img to i could easily manipulate the position
+and size */
+.modal-content-images{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 100vw;
+    height: 80vh;
+    overflow: hidden;
+    text-align: center;
+}
+.modal-images{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1000px;
+    height: 100%;
+}
+/* The modal image */
+.modal-images img {
+    width: 80%;
+    padding: 50px;
+}
+/* The thumbnail container for the thumbnails at the buttom */
+.image-thumbnails {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    background-color: #0000007c;
+}
+/* The thumnail images */
+.image-thumbnails img {
+    width: 150px;
+    margin: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s ease;
+}
+/* Hover effect for the thumbnail images */
+.image-thumbnails img:hover, .image-thumbnails img.active {
+    border-color: #D3B037;
+}
+
+/* Modal close button styling */
+.modal .close {
+    position: absolute;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.69);
+    padding: 0 10px;
+    top: 30px;
+    right: 30px;
+    font-size: 1.5em;
+    color: #000000;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+/* modal close button hover effect */
+.modal .close:hover{
+    background-color: #D3B037;
+    color: white;
+}
+
+/* modal prev and next button */
+.modal .prev-btn, .modal .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1em;
+    background: #D3B037;
+    color: #fff;
+    border: none;
+    font-family: monospace;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+/* Positioning the modal previous and next button */
+.modal .prev-btn { left: 3vw; }
+.modal .next-btn { right: 3vw; }
+
+/* --------------Start of all landing page animations------------ */
+.pageSliderItem h1{
+    animation: headSlidein 0.4s linear 0.1s 1 normal forwards;
+    opacity: 0;
+
+}
+/* P slide animation */
+.pageSliderItem p{
+    animation: pSlideIn 0.4s linear 0.3s 1 normal forwards;
+    opacity: 0;
+}
+/* Buttons slide in animations */
+/* For the first hero sect button */
+.pageSliderButton{
+    animation: ButtonSlideIn 0.3s linear 0.6s 1 normal forwards;
+    opacity: 0;
+}
+/* For the second hero section button */
+.pageSliderButton:nth-child(2){
+    animation-delay: 0.9s;
+}
+
+/* Mini gallery slide in Animations */
+/* For the first Mini gallery */
+.miniGalleryImgContainerBorder{
+    opacity: 0;
+    animation: miniGallerySlideIn 0.4s ease 1.2s 1 normal forwards;
+}
+/* For the second Mini gallery */
+.miniGalleryImgContainerBorder:nth-child(2){
+    animation-delay: 1.5s
+}
+/* For the last Mini gallery */
+.miniGalleryImgContainerBorder:nth-child(3){
+    animation-delay: 1.8s
+}
+
+/* Keyframe animaitions to customize the animations */
+@keyframes headSlidein {
+    0%{
+        opacity: 0;
+        transform: translate(40px);
+    }
+    100%{
+        opacity: 100;
+        transform: translate(0px);
+    }
+    
+}
+
+@keyframes pSlideIn {
+    0%{
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    100%{
+        opacity: 100;
+        transform: translateX(0px);
+    }
+    
+}
+
+@keyframes ButtonSlideIn {
+    0%{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100%{
+        opacity: 100;
+        transform: translateX(0px);
+    }
+    
+}
+
+@keyframes miniGallerySlideIn {
+    0%{
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    100%{
+        opacity: 100;
+        transform: translateX(0px);
+    }
+    
+}
+/* --------------End of all landing page animations------------ */
+/* ==================== END OF THE LANDING PAGE STYLING ===================== */ 
+
+
+/* =================== START OF THE ACCOMODATION SECTION ======================= */
+/* Accommodation section container styling */
+.accommodationSection{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100%;
+    max-width: 100vw;
+    width: 100%;
+    background-color: #202020;
+    padding: 30px 60px;
+}
+/* Accomodation Section Header Style */
+.accommodationSectionHeader{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 40px;
+    color: #CCB67D;
+    font-family: 'Josefin Sans', sans-serif;
+    letter-spacing: 3px;
+}
+
+/* Lines by both side which you see on the header */
+.accommodationSectionHeader::before, .accommodationSectionHeader::after{
+    content: '';
+    height: 4px;
+    width: 60px;
+    background-color: #CCB67D;
+}
+
+/* Title Content Paragraph */
+.accommodationSectionHeader+p{
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 30px;
+}
+
+/* Accommodation Container to house the four accomodation types */
+.accommodationsContainer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 15px;
+    /* background-color: red; */
+    flex-grow: 1;
+    flex-wrap: wrap;
+}
+
+/* Styling for each individual Accommodation type */
+.accommodationTypes{
+    min-width: 280px;
+    width: 300px;
+    height: 450px;
+    background-color: #3e3e3e;
+}
+
+/* Accomodation Image container to house the image */
+.accommodationTypesImgContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+/* Accommodation image size */
+.accommodationTypesImgContainer img{
+    width: 400px;
+}
+
+/* Container for the accomodation information */
+.accommodationInfo{
+    padding: 10px 20px;
+    gap: 10px;
+}
+
+/* Accommodation Title */
+.accommodationTypesTitle{
+    font-family: 'Open Sans', sans-serif;
+    color: #CCB67D;
+    font-size: 20px;
+}
+
+/* Accomodation Content */
+.accommodationTypesContent{
+    font-family: 'Jost', sans-serif;
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Accommodation Price */
+.accommodationTypesPrice{
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+}
+
+/* Check Availabilty Button */
+.accomodationTypesBtn{
+    width: 100%;
+    font-size: 15px;
+    background-color: #CCB67D;
+    color: black;
+    border: 2px solid #00000000;
+}
+
+/* Customised Check Availabilty Button Hover effect */
+.accomodationTypesBtn:hover{
+    border: 2px solid #000000;
+}
+.accomodationTypesBtn::after{
+    content: 'CHECK AVAILABILITY';
+}
+.accomodationTypesBtn:hover::after{
+    transform: translateY(5px);
+}
+
+/* View All Rooms Button */
+.viewAllRoomsBtn{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    width: 250px;
+    background-color: #CCB67D;
+    align-self: center;
+    font-family: 'Open Sans',sans-serif;
+}
+
+.viewAllRoomsBtn:hover:before{
+    width: 101%;
+}
+
+/* Accomodations Page Animations Here */
+.accommodationTypes{
+    animation: accommodationSlideIn 0.4s ease 0s 1 normal forwards;
+    opacity: 0;
+}
+.accommodationTypes:nth-child(2){animation-delay: 0.2s;}
+.accommodationTypes:nth-child(3){animation-delay: 0.6s;}
+.accommodationTypes:nth-child(4){animation-delay: 0.8s;}
+
+.viewAllRoomsBtn{
+    animation: viewAllRoomsBtnAnim 0.4s ease 1s 1 normal forwards;
+    opacity: 0;
+}
+
+@keyframes accommodationSlideIn {
+    0%{
+        opacity: 0;
+        transform: translate(40px);
+    }
+    100%{
+        opacity: 100;
+        transform: translate(0px);
+    }   
+}
+@keyframes viewAllRoomsBtnAnim {
+    0%{
+        opacity: 0;
+        transform: translateY(80px);
+    }
+    100%{
+        opacity: 100;
+        transform: translateY(0px);
+    }
+    
+}
+/* =================== END OF THE ACCOMODATION SECTION ======================= */
+
+/* ================== START OF THE WHY CHOOSE US SECTION STYLING =================== */
+/* Why choose us section styling */
+.whyChooseUsSection{
+    position: relative;
+    min-height: 100vh;
+    height: 100%;
+    max-width: 100vw;
+    width: 100%;
+    padding: 40px;
+    background-image: url(../Images/Why-Choose-Us-BG.jpg);
+    background-position: center;
+    background-size: 100%;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+/* Top Star Quality Icon Image(Yeah it's not a text but an svg lol!) */
+.topStarQualityIcon{
+    height: 18px;
+    color: #CCB67D;
+    margin-bottom: 30px;
+}
+
+/* Why choose use text style */
+.WCUsectionHeader{
+    font-family: 'italiana', sans-serif;
+    font-weight:lighter;
+    font-size: 40px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* This container houses all the why choose us info, i style it to look like
+a table and grid in a way */
+.sectionThreeTableContainer{
+    z-index: 100;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 100px;
+    transform: scale(0%);
+}
+/* This outer one is used to house the content */
+.sectionThreeTableContainerOuter{
+    background-color: #0000009e;
+    backdrop-filter: blur(5px);
+    color: white;
+    border: 2px solid #CCB67D;
+    padding: 10px;
+    min-width: 200px;
+    width: 400px;
+    height: 250px;
+    overflow: hidden;
+    border-collapse: collapse;
+    margin-left: -2px;
+    margin-bottom: -2px;
+    transition: 0.4s ease;
+    flex-grow: 1;
+}
+/* Removing borders where necessary for the Outer container */
+.sectionThreeTableContainerOuter:nth-child(1),
+.sectionThreeTableContainerOuter:nth-child(2),
+.sectionThreeTableContainerOuter:nth-child(3){
+    border-top: none;
+}
+.sectionThreeTableContainerOuter:nth-child(4),
+.sectionThreeTableContainerOuter:nth-child(5),
+.sectionThreeTableContainerOuter:nth-child(6){
+    border-bottom: none;
+}
+
+/* Hover effect for the outer container */
+.sectionThreeTableContainerOuter:hover{
+    background-color: #CCB67D;
+    color: black;
+}
+
+/* Adding a border on hover to the inner container */
+.sectionThreeTableContainerOuter:hover .sectionThreeTableContainerInner{
+    border: 2px solid #ecdbbf;
+
+}
+
+/* This inner container house the content, the reason i added it is for the 
+border effect on hover */
+.sectionThreeTableContainerInner{
+    padding: 10px;
+    height: 100%;
+    border: 2px solid #ecdbbf00;
+}
+
+/* Content index number */
+.WCHtableIndexNO{
+    font-family: 'voor', sans-serif;
+    letter-spacing: 4px;
+}
+
+/* Content Header */
+.WCHtableIndexNO+h2{
+    font-family: 'italiana', sans-serif;
+}
+
+/* Content Description */
+.sectionThreeTableContainerInner p{
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+}
+
+/* Doors to reveal when the user scrolls to the why choose us section */
+.doors{
+    position: absolute;
+    display: flex;
+    place-items: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 100%;
+    transform-style: preserve-3d;
+    transform: perspective(2500px);
+    transition: 1s ease;
+    visibility: visible;
+}
+
+/* Left and right Door */
+.leftDoor, .rightDoor{
+    position: relative;
+    width: 50vw;
+    min-height: 100%;
+    background-color: rgba(167, 210, 231, 0.363);
+    backdrop-filter: blur(10px);
+}
+
+/* Left and right door image */
+.leftDoor img, .rightDoor img{
+    width: inherit;
+}
+
+.doorBlinkers{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    top: 100px;
+    z-index: 1000;
+}
+
+.doorBlinker{
+    position: relative;
+    list-style: none;
+    display: flex;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(255, 65, 65);
+    border: 2px solid rgb(167, 14, 14);
+    border-radius: 50%;
+    box-shadow: 0 0 7px 3px red;
+}
+.doorBlinker.isDoorOpened{
+    background-color: #41ff61;
+    border: 2px solid #0ea744;
+    border-radius: 50%;
+    box-shadow: 0 0 7px 3px #41ff61;
+    animation: none;
+}
+.doorBlinker li::before{
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 13px;
+    height: 13px;
+    transform: scale(150%);
+    z-index: -1;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+}
+.leftDoorBlinkers{left: 95%;}
+.rightDoorBlinkers{right: 95%;}
+
+
+/* All why choose us Page animation Here */
+.whyChooseUsSection.animate {
+    animation: whyChooseUsSectionBGAnim 1.5s ease 0.7s 1 normal forwards;
+}
+
+@keyframes whyChooseUsSectionBGAnim {
+    0%{
+        background-size: 100%;
+    }
+    100%{
+        background-size: 130%;
+    }
+    
+}
+
+
+.sectionThreeTableContainer.visible {
+    animation: sectionThreeTableContainerAnim 1.5s ease 0.7s 1 normal forwards;
+}
+
+@keyframes sectionThreeTableContainerAnim {
+    0%{
+        transform: scale(0%);
+    }
+    100%{
+        transform: scale(100%);
+    }
+    
+}
+
+
+.leftDoor{
+    transform-origin: left;
+}
+.leftDoor.visible{
+    animation: leftDoorOpen 2s ease 0.3s 1 normal forwards;
+}
+
+@keyframes leftDoorOpen {
+    0%{
+        /* transform: rotateY(0deg); */
+        transform: translateX(0) scale(100%);
+    }
+    100%{
+        /* transform: rotateY(-150deg); */
+        transform: translateX(-130%) scale(120%);
+    }
+    
+}
+.rightDoor{
+    transform-origin: right;
+}
+.rightDoor.visible{
+    animation: rightDoorOpen 2s ease 0.3s 1 normal forwards;
+}
+
+@keyframes rightDoorOpen {
+    0%{
+        /* transform: rotateY(0deg); */
+        transform: translateX(0) scale(100%);
+    }
+    100%{
+        /* transform: rotateY(150deg); */
+        transform: translateX(130%) scale(120%);
+
+    }
+    
+}
+
+.doorBlinker{
+    animation: doorBlinkerAnim 0.2s ease 0s infinite;
+}
+
+@keyframes doorBlinkerAnim {
+    0%{
+        background-color: rgb(38, 0, 0);
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: 50%;
+        box-shadow: 0 0 0 0 rgb(0, 0, 0);
+    }
+    100%{
+        background-color: rgb(255, 65, 65);
+        border: 2px solid rgb(167, 14, 14);
+        border-radius: 50%;
+        box-shadow: 0 0 7px 3px red;
+    }
+}
+/* This is for the responsive view, right now it is being set to none because i do not
+want it to be visible, i will add it later to the media query */
+.sectionThreeTableContainerOuter.resVisible{
+    animation: none;
+}
+/* ================== END OF THE WHY CHOOSE US SECTION STYLING =================== */
+
+/* ================== START OF THE SERVICES SECTION STYLING =================== */
+.serviceSection{
+    position: relative;
+    min-height: 100vh;
+    height: 100%;
+    max-width: 950vw;
+    width: 100%;
+    padding: 20px;
+    background-color: #202020;
+}
+
+.servicesSectionHeader{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 40px;
+    color: #CCB67D;
+    font-family: 'Josefin Sans', sans-serif;
+    letter-spacing: 3px;
+    padding: 50px 40px;
+}
+
+/* Lines by both side which you see on the header */
+.servicesSectionHeader::before, .servicesSectionHeader::after{
+    content: '';
+    height: 4px;
+    width: 60px;
+    background-color: #CCB67D;
+}
+
+.servicesOfferedContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    flex-grow: 1;
+}
+
+
+.servicesOffered{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px;
+    padding: 20px;
+    width: 350px;
+    height: 250px;
+    background-color: #3e3e3e;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    transition: 0.5s ease 0.1s;
+    overflow: hidden;
+    opacity: 0;
+    cursor: pointer;
+}
+.servicesOffered:hover{
+    background-color: #CCB67D;
+    color: black;
+}
+.servicesOffered:hover .servicesIcon{
+    color: black;
+}
+.servicesOffered:hover .SOclickToViewTxt{
+    transform: translateX(0%);
+}
+.SOclickToViewTxt{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-family: monospace;
+    background-color: #00000066;
+    color: black;
+    padding: 6px 12px;
+    transform: translateX(115%);
+    transition: 0.5s ease 0.1s;
+}
+
+.servicesIcon{
+    color: white;
+    width: 70px;
+    margin-bottom: 20px;
+    transition: 0.5s ease 0.1s;
+}
+.tech{
+    width: 100px;
+    margin-bottom: 0;
+
+}
+.servicesOffered h2{
+    font-size: 25px;
+}
+.servicesOffered p{
+    font-size: 15px;
+    text-align: center;
+}
+
+/* Services Modal */
+.servicesModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    gap: 20px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.614);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.serviceModalBody{
+    position: relative;
+    height: 80%;
+    width: 500px;
+    background-color: #000;
+    padding: 30px;
+    border-left: 5px solid #CCB67D;
+}
+
+.servicesModal .servicesModalCloseBtn {
+    position: absolute;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.69);
+    padding: 0 10px;
+    top: 30px;
+    right: 30px;
+    font-size: 1.5em;
+    color: #000000;
+    cursor: pointer;
+    transition: 0.5s ease;
+    outline: none;
+    border: none;
+}
+/* modal close button hover effect */
+.servicesModal .servicesModalCloseBtn:hover{
+    background-color: #CCB67D;
+    color: white;
+}
+
+.servicesModalTitle{
+    color: #CCB67D;
+    text-align: center;
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+.servicesModalContent{
+    color: #CCB67D;
+    font-family: 'Jost',sans-serif;
+    text-align: justify;
+    height: 90%;
+    padding: 0 20px 0 0;
+    overflow-y: auto;
+}
+.servicesModalDescriptionList dt{
+    list-style:lower-alpha;
+}
+.servicesModalDescriptionList dd{
+    margin: 0 0 20px 20px;
+}
+
+.servicesModalContent::-webkit-scrollbar {
+    width: 8px;
+}
+
+.servicesModalContent::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* border-radius: 10px; */
+}
+.servicesModalContent::-webkit-scrollbar-thumb {
+    background: #515151;
+    /* border-radius: 10px; */
+}
+.servicesModalContent::-webkit-scrollbar-thumb:hover {
+    background: white;
+  }
+
+  /* Animations for the services page here */
+  .servicesOffered.inView{
+    animation: servicesOfferedAnim 0.5s ease 0s 1 normal forwards;
+}
+
+@keyframes servicesOfferedAnim {
+    0%{
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+
+    }
+    
+}
+/* ================== END OF THE SERVICES SECTION STYLING =================== */
+
+/* ================== START OF THE REVIEWS SECTION STYLING =================== */
+
+.reviewsPage{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    max-width: 100%;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    overflow: hidden;
+    background-image: url(../Images/reviews-sec-bg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Reviews Page content container styling */
+.reviewsPageContent{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+    padding: 50px 50px 25px 50px;
+    height: auto;
+    background-color: #202020;
+    font-family: 'Tenor Sans', sans-serif;
+    transition: 0.7s ease;
+}
+
+/* Styling for the small header in the reviews page section */
+.reviewMiniHeader{
+    font-weight: lighter;
+    color: #CCB67D;
+    margin-bottom: 10px;
+}
+
+/* Styling for the large header in the reviews page section */
+.reviewsHeader{
+    font-size: 40px;
+    font-weight: lighter;
+    color: white;
+}
+/* Styling for the star rating container */
+.starRating{
+    display: flex;
+    gap: 10px;
+}
+
+/* Styling for the star rating icons and added important to force the code when */
+.starRatingIcon{
+    width: 50px !important;
+    margin-bottom: 20px !important; 
+}
+
+/* Customer Review Text Styling */
+.customerReview{
+    color: white;
+    font-size: 20px;
+    width: 80%;
+    text-align: justify;
+    margin-bottom: 20px;
+    transition: 0.7s ease;
+}
+
+/* Client info container that houses the client details and image */
+.clientInfo{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+/* Client image Container */
+.clientImgContainer{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+/* Client Image */
+.clientImgContainer img{
+    width: 95px;
+}
+
+/* Client Name */
+.ClientName{
+    color: white;
+    font-weight: lighter;
+}
+/* Client Type */
+.clientType{
+    color: #909090;
+}
+
+/* Reviews Navigation Dots */
+.reviewPageNavDots{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Individual Navigation dots */
+.reviewPageNavDots li{
+    position: relative;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    list-style: none;
+    background-color: #ccb67d9d;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+/* Adding a pseudo class styling to it, The pseudo class styling will be used to know 
+which dot is active */
+.reviewPageNavDots li::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: -10px;
+    left: -10px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: 0.5s ease;
+}
+
+/* Adding a class to the dot to know which one is active */
+.reviewPageNavDots li.reviewPageNavDotsActive {
+    background-color: #CCB67D;
+    width: 12px;
+    height: 12px;
+}
+
+/* Adding a class to the dot::before to know which one is active */
+.reviewPageNavDots li.reviewPageNavDotsActive::before {
+    border-color: #CCB67D; /* Add outlined border to active dot */
+}
+
+/* All Reviews Section animations here */
+.reviewsPageContent,
+.reviewMiniHeader,
+.reviewsHeader,
+.customerReview,
+.clientImg,
+.ClientName,
+.clientType,
+.reviewPageNavDots li {
+    opacity: 0;
+}
+
+.reviewsPageContent.playReviewsPageAnimations{
+    animation: reviewsPageContentAnim 0.5s ease 0s 1 normal forwards;
+}
+
+@keyframes reviewsPageContentAnim {
+    0%{
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+
+    }
+}
+
+.reviewMiniHeader.playReviewsPageAnimations{
+    animation: reviewMiniHeaderAnim 0.5s ease 0.2s 1 normal forwards;
+}
+
+@keyframes reviewMiniHeaderAnim {
+    0%{
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+
+    }
+}
+.reviewsHeader.playReviewsPageAnimations{
+    animation: reviewsHeaderAnim 0.5s ease 0.4s 1 normal forwards;
+}
+
+@keyframes reviewsHeaderAnim {
+    0%{
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+
+    }
+}
+.starRatingIcon.playReviewsPageAnimations{
+    opacity: 0;
+    animation: starRatingIconAnim 0.5s ease 0.6s 1 normal forwards;
+}
+.starRatingIcon.playReviewsPageAnimations:nth-child(2){animation-delay: 0.7s;}
+.starRatingIcon.playReviewsPageAnimations:nth-child(3){animation-delay: 0.8s;}
+.starRatingIcon.playReviewsPageAnimations:nth-child(4){animation-delay: 0.9s;}
+.starRatingIcon.playReviewsPageAnimations:nth-child(5){animation-delay: 1s;}
+
+@keyframes starRatingIconAnim {
+    0%{
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+
+    }
+}
+
+.customerReview.playReviewsPageAnimations{
+    animation: customerReviewAnim 0.5s ease 0.6s 1 normal forwards;
+}
+
+@keyframes customerReviewAnim {
+    0%{
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+
+    }
+}
+
+.clientImg.playReviewsPageAnimations{
+    animation: clientImgAnim 0.5s ease 0.9s 1 normal forwards;
+}
+
+@keyframes clientImgAnim {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+.ClientName.playReviewsPageAnimations, .clientType.playReviewsPageAnimations{
+    animation: clientNameAndTypeAnim 0.5s ease 1.1s 1 normal forwards;
+}
+.clientType.playReviewsPageAnimations{animation-delay: 1.2s;}
+
+@keyframes clientNameAndTypeAnim {
+    0%{
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.reviewPageNavDots li.playReviewsPageAnimations{
+    animation: reviewPageNavDotsAnim 0.5s ease 1.4s 1 normal forwards;
+}
+.reviewPageNavDots li.playReviewsPageAnimations:nth-child(2){animation-delay: 1.5s;}
+.reviewPageNavDots li.playReviewsPageAnimations:nth-child(3){animation-delay: 1.6s;}
+.reviewPageNavDots li.playReviewsPageAnimations:nth-child(4){animation-delay: 1.7s;}
+
+
+@keyframes reviewPageNavDotsAnim {
+    0%{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+
+    }
+}
+/* ================== END OF THE REVIEWS SECTION STYLING =================== */
+
+/* ================== START OF THE ABOUT US SECTION STYLING =================== */
+/* About us Page Styling */
+.aboutUsPage{
+    position: relative;
+    min-height: 100vh;
+    height: 100%;
+    max-width: 100vw;
+    width: 100%;
+    padding: 60px 30px;
+    background-color: #202020;
+    color: white;
+}
+
+/* About US Text Styling */
+.aboutUsHeader{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 20px;
+    color: #CCB67D;
+}
+/* After effect to add side line to it */
+.aboutUsHeader::after{
+    content: '';
+    width: 50px;
+    height: 3px;
+    background-color: #CCB67D;
+}
+
+/* Styling for all the the about us top container */
+.aboutUsPageTop{
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    /* background-color: red; */
+    gap: 20px;
+}
+
+/* Top Left Styling */
+.aboutUsPageTopLeft{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+    padding-top: 40px;
+    flex-shrink: 1;
+}
+
+/* Header in the top left styling*/
+.aboutUsPageTopLeftHeader{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 40px;
+    flex-shrink: 1;
+}
+/* Styling for the "Houston" text in the header */
+.aboutUsPageTopLeftHeader span{color: #CCB67D;}
+
+/* Styling for the about us contents */
+.aboutUSPageTopLeftContentContainer{
+    flex-shrink: 1;
+    max-height: 410px;
+    overflow-y: auto;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+/* Scroll bar styling */
+.aboutUSPageTopLeftContentContainer::-webkit-scrollbar {
+    width: 8px;
+}
+.aboutUSPageTopLeftContentContainer::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* border-radius: 10px; */
+}
+.aboutUSPageTopLeftContentContainer::-webkit-scrollbar-thumb {
+    background: #515151;
+    /* border-radius: 10px; */
+}
+.aboutUSPageTopLeftContentContainer::-webkit-scrollbar-thumb:hover {
+    background: rgb(165, 165, 165);
+}
+
+/* Each individual Paragraph Styling */
+.aboutUSPageTopLeftContentContainer p{
+    padding-right: 20px;
+    margin-bottom: 20px;
+    text-align: justify;
+    color: grey;
+    transition: 0.3s ease;
+    width: 97%;
+}
+/* Styling added dynamically with JS to know which one is active */
+.aboutUsPageTopLeftContent.aboutUsPageContentactive {
+    color: #fff;
+    width: 100%;
+  }
+
+  /* Top Right Styling */
+.aboutUsPageTopRight{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex-basis: 40%;
+    flex-shrink: 3;
+}
+/* Container which houses two images each
+This was added to prevent flex all images when the window is resized */
+.aboutUsPageTopRightTopImgContainer, 
+.aboutUsPageTopRightBottomImgContainer{
+    display: flex;
+    gap: 10px;
+    flex-shrink: 3;
+}
+
+/* Styling for the image containr */
+.aboutUsPageTopRightImgContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:18.5vw;
+    height: 16.5vw;
+    overflow: hidden;
+    flex-shrink: 3;
+}
+
+/* Styling for the image size */
+.aboutUsPageTopRightImgContainer img{
+    width: 400px;
+}
+
+/* Learn more button */
+.aboutUsPageTopLeftButton{
+    text-decoration: none;
+    width: 200px;
+    font-family:'Open Sans', sans-serif;
+    margin-top: 20px;
+}
+
+
+/* About us bottom styling */
+.aboutUsPageBottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+}
+
+/* Bottom content container styling */
+.aboutUsPageBottomContentContainer{
+    display: flex;
+    max-width: 300px;
+    max-height: 300px;
+    width: 200px;
+    height: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Content Bottom Title Styling */
+.aboutUsPageBottomContentTitle{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+}
+
+/* Content bottom info styling */
+.aboutUsPageBottomContent{
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+}
+/* All About Us Animations Here */
+/* Setting opacity of all elements that animations will be applied to  
+this is to prevent them display first, then animating*/
+.aboutUsHeader,
+.aboutUsPageTopLeftHeader,
+.aboutUsPageTopLeftContent,
+.aboutUsPageTopLeftButton,
+.aboutUsPageTopRightImgContainer{
+    opacity: 0;
+}
+.aboutUsHeader.abtUsTopAnimate{
+    opacity: 0;
+    animation: aboutUsHeaderAnim 0.5s ease 0s 1 normal forwards;
+}
+@keyframes aboutUsHeaderAnim {
+    0%{
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+
+    }
+}
+
+.aboutUsPageTopLeftHeader.abtUsTopAnimate{
+    opacity: 0;
+    animation: aboutUsPageTopLeftHeaderAnim 0.5s ease 0.1s 1 normal forwards;
+}
+@keyframes aboutUsPageTopLeftHeaderAnim {
+    0%{
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+
+    }
+}
+
+.aboutUsPageTopLeftContent.abtUsTopAnimate{
+    opacity: 0;
+    animation: aboutUsPageTopLeftContentAnim 0.5s ease 0.25s 1 normal forwards;
+}
+.aboutUsPageTopLeftContent.abtUsTopAnimate:nth-child(2){animation-delay: 0.4s;}
+.aboutUsPageTopLeftContent.abtUsTopAnimate:nth-child(3){animation-delay: 0.55s;}
+.aboutUsPageTopLeftContent.abtUsTopAnimate:nth-child(4){animation-delay: 0.7s;}
+@keyframes aboutUsPageTopLeftContentAnim {
+    0%{
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+
+    }
+}
+
+.aboutUsPageTopLeftButton.abtUsTopAnimate{
+    opacity: 0;
+    animation: aboutUsPageTopLeftButtonAnim 0.5s ease 0.72s 1 normal forwards;
+}
+@keyframes aboutUsPageTopLeftButtonAnim {
+    0%{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+
+    }
+}
+
+.aboutUsPageTopRightTopImgContainer .aboutUsPageTopRightImgContainer.abtUsTopAnimate:nth-child(1){
+    opacity: 0;
+    animation: aboutUsPageTopRightImgContainerNX 0.5s ease 0.72s 1 normal forwards;
+}
+.aboutUsPageTopRightBottomImgContainer .aboutUsPageTopRightImgContainer.abtUsTopAnimate:nth-child(1){
+    opacity: 0;
+    animation: aboutUsPageTopRightImgContainerNX 0.5s ease 0.9s 1 normal forwards;
+}
+.aboutUsPageTopRightTopImgContainer .aboutUsPageTopRightImgContainer.abtUsTopAnimate:nth-child(2){
+    opacity: 0;
+    animation: aboutUsPageTopRightImgContainerNX 0.5s ease 0.8s 1 normal forwards;
+}
+.aboutUsPageTopRightBottomImgContainer .aboutUsPageTopRightImgContainer.abtUsTopAnimate:nth-child(2){
+    opacity: 0;
+    animation: aboutUsPageTopRightImgContainerNX 0.5s ease 1s 1 normal forwards;
+}
+@keyframes aboutUsPageTopRightImgContainerNX {
+    0%{
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+
+    }
+}
+
+/* ================== END OF THE ABOUT US SECTION STYLING =================== */
+
+/* ================== START OF THE CONTACT SECTION STYLING =================== */
+.contactPage{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    min-height: 60vh;
+    height: 100%;
+    max-width: 100vw;
+    width: 100%;
+    padding: 60px 30px;
+    background-image:linear-gradient(180deg, rgba(0, 0, 0, 0.5)60%,
+    rgb(0, 0, 0,0.5)85%),url(../Images/contact-bg.jpg) ;
+    background-size:cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+.contactHeader{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-family: 'Josefin Sans', sans-serif;
+    letter-spacing: 3px;
+    font-size: 50px;
+    color: #CCB67D;
+}
+.contactHeader::before, .contactHeader::after{
+    content: '';
+    height: 5px;
+    width: 50px;
+    background-color: #CCB67D;
+}
+.contactHeaderContent{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+.contactExperienceUs{
+    font-size: 35px;
+}
+.contactCallUsNow{
+    font-size: 28px;
+}
+.contactPhoneNo{
+    font-size: 40px;
+}
+/* ================== END OF THE CONTACT SECTION STYLING =================== */
+
+/* ================== START OF THE LOCATION SECTION STYLING =================== */
+.locationPage{
+    position: relative;
+    min-height: 100vh;
+    height: 100%;
+    max-width: 100vw;
+    width: 100%;
+    padding: 30px 40px;
+    background-color: #202020;
+    color: white;
+}
+
+/* Location Header */
+.locationPageHeader{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 30px;
+    /* font-weight: lighter; */
+    color: #CCB67D;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+/* After Element for header side line */
+.locationPageHeader::after{
+    content: '';
+    height: 4px;
+    width: 50px;
+    background-color: #CCB67D;
+}
+
+/* Location form */
+.locationForm{
+    display: flex;
+    align-items: flex-end;
+    gap: 30px;
+    width: 100%;
+    margin-bottom: 60px;
+}
+/* Paragraph text in the form */
+.locationForm p{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+/* Search location input field styling */
+.searchLocation{
+    width: 60%;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: #00000000;
+    font-size: 17px;
+    color: #CCB67D;
+    border-bottom: 2px solid #CCB67D;
+    font-family: 'Open Sans', sans-serif;
+}
+.searchLocation::placeholder{
+    color: #ccb67d9d;
+}
+
+/* Location info container to house the location distance and area items */
+.locationInfoContainer{
+    margin-left: auto;
+    text-align: center
+}
+
+/* Location distance styling */
+.locationDistance{
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 50px;
+    font-weight: lighter;
+}
+
+/* Location Area styling */
+.locationArea{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 21px;
+    color: #909090;
+}
+
+/* Google Maps container */
+.googleMapsContainer{
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+/* Map prompt styling, This is the container styling for the element that ask the user to access
+his location */
+.mapPrompt{
+    position: fixed;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-self: center;
+    gap: 20px;
+    width: 450px;
+    height: 150px;
+    top: 120px;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0);
+    padding: 20px;
+    font-family: 'Open-Sans', sans-serif;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(-200px);
+}
+
+/* Header of the map prompt */
+.mapPrompt h2{
+    align-self: center;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Buttons Styling of the map prompt */
+.mapUserResponseBtn{
+    cursor: pointer;
+    width: 50px;
+    height: 40px;
+    outline: none;
+    border: none;
+    background-color: grey;
+    color: white;
+}
+
+/* Yes Buttons styling of the map prompt */
+.mapUserResponseBtn#mapUserResponseYesBtn{
+    width: 70px;
+    background-color: #CCB67D;
+    color: black;
+    margin-left: 20px;
+}
+
+/* Location Animations Here */
+/* This is for the slide in animation of the map prompt*/
+.mapPrompt.mapPromptSlideInAnimate{
+    opacity: 0;
+    animation: mapPromptSlideInAnim 0.5s ease 0s 1 normal forwards;
+}
+@keyframes mapPromptSlideInAnim {
+    0%{
+        opacity: 0;
+        transform: translateY(-200px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+
+    }
+}
+
+/* This is for the slide out animation of the map prompt*/
+.mapPrompt.mapPromptSlideOutAnimate{
+    opacity: 0;
+    animation: mapPromptSlideOutAnim 0.5s ease 0s 1 normal forwards;
+}
+@keyframes mapPromptSlideOutAnim {
+    0%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(-200px);
+
+    }
+}
+/* ================== END OF THE LOCATION SECTION STYLING =================== */
+
+/* ================== START OF THE FOOTER SECTION STYLING =================== */
+footer{
+    position: relative;
+    min-height: 40vh;
+    height: 100%;
+    max-width: 100vw;
+    width: 100%;
+    line-height: 1.8em;
+}
+
+/* Styling for the footer top */
+.footerTop{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    background-color: #000;
+    color: white;
+    padding: 50px 30px;
+    flex-wrap: wrap;
+}
+
+/* Footer top headers */
+.footerTopHeader{
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+/* Separate styling for the brand name in the footer */
+.brandName{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Footer contents and info about respective headers */
+.footerTopContent{
+    font-family: 'Open Sans', sans-serif;
+    width: 230px;
+    font-size: 14px;
+    font-weight: lighter;
+    color: grey;
+    text-decoration: none;
+}
+
+/* Weather container styling */
+.weather{
+    display: flex;
+    align-items: flex-start;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Weather Icon size */
+.weatherIcon{
+    width: 50px;
+    margin-right: 5px;
+}
+
+/* Weather temperature text */
+.weatherTemp{
+    font-size: 35px;
+}
+
+/* Styling for the celsuis and fahrenhiet text */
+.weatherCelsius,.weatherFarenhiet{
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    text-align: center;
+    padding: 0 5px;
+    font-family: sans-serif;
+    height: 18px;
+}
+/* Border added to the celsius to add a separator line between it and the fahrenhiet text */
+.weatherCelsius{
+    border-right: 2px solid grey;
+}
+/* Container housing the socials icon styling */
+.footerSocialsIconContainer{
+    margin-top: 7px;
+    display: flex;  
+    gap: 23px;
+}
+
+/* Social icon a tag styling */
+.footerSocialIconLink{
+    color: white;
+    cursor: pointer;
+}
+
+/* Social Icon */
+.footerSocialsIcon{
+    color: white;
+    width: 30px;
+    transition: 0.3s ease;
+}
+/* Icons Hover Effect */
+.footerSocialsIcon:hover{
+    color: #CCB67D;
+}
+/* Customizing the footer contact info styling*/
+.footerContactUs .footerTopContent{
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+/* Hover effect for the footer contact info */
+.footerContactUs .footerTopContent:hover{
+    color: #CCB67D;
+}
+
+/* Styling for the footer bottom */
+.footerBottom{
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    padding: 30px;
+    background-color: #333333;
+}
+
+/* Styling for the container housing the a tags in the footer bottom */
+.footerBottomTop{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/* a tags (other links) styling for the footer bottom */
+.footerBottomTop a{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+/* hover effect for the a tag */
+.footerBottomTop a:hover{
+    color: #CCB67D;
+}
+
+/* Footer bootom end with houses the copyright text and powered by info */
+.footerBottomEnd{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-family: 'Open Sans', sans-serif;
+    padding-bottom: 20px;
+}
+/* Styling to separate the copyright and the powered by info by adding a border and padding */
+.footerBottomEnd .Copyright{
+    border-right: 1px solid white;
+    padding: 0 20px;
+}
+
+/* all p tags styling in the footer bottom */
+.footerBottomEnd p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+}
+
+/* Styling of the brand name in the powered by text */
+.footerBottomEnd p span{
+    margin-left: 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bolder;
+    background: linear-gradient(90deg, rgba(31,173,184,1) 0%, rgba(63,84,145,1) 100%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+
+/* ====================RESPONSIVE STYLES HERE ========================= */
+
+
+@media (max-width:980px) {
+    nav{
+        /* z-index: 100; */
+        padding: 20px;
+        background-color: #000000;
+    }
+    /* Styling the desktop view to not be visible */
+    nav .desktopView{
+        display: none;
+    }
+    nav .navCTAButton{
+        display: none;
+    }
+
+    /* Styling the responsive view nav to be visible */
+    .navResponsive{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 360px;
+        background-color: #000000;
+        font-family: 'Open Sans', sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        transform: translateY(-500px);
+        padding: 20px;
+        gap: 20px;
+        z-index: 1;
+        overflow: hidden;
+        transition: 0.5s ease;
+    }
+    
+    .navResponsive ul{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+    .navResponsive li{
+        transition: 0.3s ease;
+        text-align: center;
+        width: 200px;
+        padding: 10px 20px;
+        background-color: #ffffff25;
+        list-style: none;
+    }
+
+    .navResponsive ul li a{
+        color: #D3B037;
+    }
+    /* Slide in transition for the nav menu */
+    .navResponsive.navMenuactive {
+        transform: translateY(0);
+    }
+    
+    .heroSectionCTA .navRespCTAButton{
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+    }
+    .pcCTAButton{
+        display: none;
+    }
+
+    nav ul li a.navActive {
+        transition: 0.3s ease;
+        color: #D3B037; /* active text color */
+    }
+
+    /* nav bar links hover effect */
+    nav ul li a::after{
+        content: none;
+    }
+
+    nav ul li a.navActive::after {
+        width: 100%;
+        background-color: #D3B037; /* active after element color */
+    }
+    /* Hamburger icon styling */
+    .menuIcon{
+        display: block;
+        font-family: monospace;
+        font-size: 25px;
+        font-weight: bolder;
+        z-index: 1000;
+    }
+
+    .pageSliderItem .heroH1Default, .pageSliderItem .heroH1Modified{
+        font-size: 55px;
+    }
+
+    .pageSliderItem p{
+        max-width: 400px;
+        width: 400px; 
+        margin-top: 40px;
+        font-size: 35px;
+    }
+
+     /* Why Choose Us section responsive styling */
+     .whyChooseUsSection{
+        padding: 20px;
+    }
+    .topStarQualityIcon{
+        width: 150px;
+        margin-bottom: 10px;
+    }
+    
+    .WCUsectionHeader{
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
+    
+    .sectionThreeTableContainer{
+        z-index: 100;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 30px;
+        gap: 20px;
+        transform: scale(100%); /*Setting the scale back to 100% because animation for this has been removed*/
+    }
+    
+    .sectionThreeTableContainerOuter{
+        border: 2px solid #CCB67D;
+        padding: 10px;
+        min-width: 200px;
+        width: 250px;
+        margin-left: 0;
+        margin-bottom: 0;
+        transition: 0.4s ease;
+        flex-grow: 1;
+        text-align: center;
+        transform: scale(0%); /* Setting the scale of this to 0% because animations have been added*/
+    }
+
+    /* Adding the border which were removed before back in the responsive view */
+    .sectionThreeTableContainerOuter:nth-child(1),
+    .sectionThreeTableContainerOuter:nth-child(2),
+    .sectionThreeTableContainerOuter:nth-child(3){
+        border-top: 2px solid #CCB67D;
+    }
+    .sectionThreeTableContainerOuter:nth-child(4),
+    .sectionThreeTableContainerOuter:nth-child(5),
+    .sectionThreeTableContainerOuter:nth-child(6){
+        border-bottom: 2px solid #CCB67D;
+    }
+    
+    .sectionThreeTableContainerInner{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border: 2px solid #ecdbbf00;
+    }
+    
+    .WCHtableIndexNO{
+        font-size: 16px;
+    }
+    
+    .WCHtableIndexNO+h2{
+        font-size: 19px;
+    }
+    
+    .sectionThreeTableContainerInner p{
+        font-size: 13px;
+    }
+    
+    /* Removing the doors animation */
+    .doors{
+        display: none;
+        visibility: hidden;
+    }
+    
+    .leftDoor, .rightDoor{
+        display: none;
+    }
+    
+    .whyChooseUsSection.animate{
+        animation: whyChooseUsSectionBGAnim 1.5s ease 0s 1 normal forwards;
+    }
+    
+    @keyframes whyChooseUsSectionBGAnim {
+        0%{
+            background-size: 100%;
+        }
+        100%{
+            background-size: 130%;
+        }
+        
+    }
+    
+    /* Adding the responsive animation */
+    .sectionThreeTableContainerOuter.resVisible{
+        animation: sectionThreeTableContainerOuterAnim 1.5s ease 0s 1 normal forwards;
+    }
+    
+    @keyframes sectionThreeTableContainerOuterAnim {
+        0%{
+            transform: scale(0%);
+        }
+        100%{
+            transform: scale(100%);
+        }
+        
+    }
+    /* Removing other animations */
+    .sectionThreeTableContainer.visible {
+        animation: none;
+    }
+    
+    .leftDoor.visible{
+        animation: none;
+    }
+    .rightDoor.visible{
+        animation: none;
+    }
+
+    /* Reviews section responsive styling */
+    .reviewsPage{
+        max-width: 100%;
+        width: 100%;
+        min-height: 100vh;
+        height: 100%;
+    }
+    .reviewsPageContent{
+        width: 80%;
+        height: 80%;
+    }
+    
+    .reviewsHeader{
+        font-size: 30px;
+    }
+
+    .starRatingIcon{
+        width: 45px;
+    }
+    
+    .customerReview{
+        font-size: 17px;
+        width: 90%;
+    }
+
+    /* About Us Section */
+        .aboutUsPage{
+            padding: 60px 10px;
+        }
+
+        .aboutUsHeader{
+            padding: 0 30px;
+            font-size: 16px;
+        }
+
+        .aboutUsPageTopLeft{
+            justify-content: space-between;
+            flex-basis: 100%;
+            padding: 0 30px;
+            flex-shrink: 0;
+        }
+
+        .aboutUsPageTopLeftHeader{
+            font-size: 30px;
+            flex-shrink: 0;
+        }
+
+        .aboutUSPageTopLeftContentContainer{
+            flex-shrink: 0;
+            max-height: 350px;
+            padding-right: 10px;
+            overflow-y:auto;
+            font-size: 15px;
+        }
+
+        .aboutUSPageTopLeftContentContainer p{
+            padding-right: 20px;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .aboutUsPageTopRight{
+            display: none;
+        }
+
+        .aboutUsPageTopLeftButton{
+            width: 200px;
+            margin-top: 20px;
+        }
+
+        .aboutUsPageBottom{
+            display: flex;
+            flex-wrap:wrap;
+            align-items: center;
+            justify-content: left;
+            gap: 30px;
+            padding: 20px 40px;
+        }
+
+        .aboutUsPageBottomContentContainer{
+            flex-direction: column;
+            justify-content: center;
+            padding: 10px;
+            width: 140px;
+            height: 140px;
+            background-position: center;
+            background-size: cover;
+        }
+        .aboutUsPageBottomContentContainer:nth-child(1){
+            background-image:linear-gradient(180deg, rgba(0, 0, 0, 0.511)60%,
+            rgb(0, 0, 0, 0.511)85%), url(../Images/about-us-1.jpg);
+        }
+        .aboutUsPageBottomContentContainer:nth-child(2){
+            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.511)60%,
+            rgb(0, 0, 0, 0.511)85%),url(../Images/about-us-2.jpg);
+        }
+        .aboutUsPageBottomContentContainer:nth-child(3){
+            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.511)60%,
+            rgb(0, 0, 0, 0.511)85%),url(../Images/about-us-3.jpg);
+        }
+        .aboutUsPageBottomContentContainer:nth-child(4){
+            background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.511)60%,
+            rgb(0, 0, 0, 0.511)85%),url(../Images/about-us-4.jpg);
+        }
+
+        .aboutUsPageBottomContentTitle{
+            font-size: 30px;
+        }
+        .aboutUsPageBottomContent{
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* Location Page styling */
+        .locationPage{
+            min-height: 80vh;
+        }
+
+        .locationPageHeader{
+            font-size: 25px;
+        }
+        .locationPageHeader::after{
+            height: 2px;
+        }
+        
+        .locationForm{
+            justify-content: center;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+        
+        .locationForm p{
+            margin-right: 0;
+            width: 100%;
+            text-align: left;
+        }
+        
+        .searchLocation{
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .locationInfoContainer{
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            width: 100%;
+            margin-right: auto;
+            text-align: right;
+        }
+        
+        .locationDistance{
+            font-size: 30px;
+        }
+        
+        .locationArea{
+            font-size: 14px;
+        }
+        
+        .googleMapsContainer{
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+        }
+        
+        
+        .mapPrompt{
+            width: 400px;
+            height: 160px;
+            top: 120px;
+        }
+        
+        .mapPrompt h2{
+            align-self: center;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .mapUserResponseBtn{
+            width: 50px;
+            height: 40px;
+        }
+        
+        .mapUserResponseBtn#mapUserResponseYesBtn{
+            width: 70px;
+            margin-left: 20px;
+        }
+
+        /* Footer Styling */
+        footer{
+            position: relative;
+            line-height: 1.6em;
+        }
+        
+        .footerTop{
+            justify-content: space-around;
+            padding: 40px 30px;
+        }
+
+        .footerTopContentContainer{
+            flex-grow: 1;
+        }
+        
+        .footerTopHeader{
+            font-size: 18px;
+        }
+        
+        .brandName{
+            font-size: 23px;
+        }
+        
+        .footerTopContent{
+            width: 200px;
+            font-size: 12px;
+        }
+        
+        .weatherIcon{
+            width: 40px;
+            margin-right: 5px;
+        }
+        .weatherTemp{
+            font-size: 30px;
+        }
+        .weatherCelsius,.weatherFarenhiet{
+            font-size: 12px;
+        }
+
+        .footerSocialsIconContainer{
+            margin-top: 10px;
+            gap: 20px;
+        }
+
+        .footerSocialsIcon{
+            width: 20px;
+        }
+        
+        .footerBottom{
+            gap: 60px;
+            padding: 30px;
+        }
+        
+        .footerBottomTop{
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .footerBottomTop a{
+            font-size: 16px;
+        }
+
+        .footerBottomEnd .Copyright{
+            border-right: 1px solid white;
+            padding: 0 20px;
+        }
+        
+}
+
+@media (max-width:740px) {
+    .heroSectionContent .pageSliderItem {
+        padding: 0 20px;
+        height: 500px;
+    }
+    
+    .pageSliderItem p{
+        /* background-color: red; */
+        max-width: 300px;
+        width: 300px; 
+        min-width: 150px;
+        margin-top: 40px;
+        font-size: 30px;
+    }
+    
+    .pageSliderItem .heroH1Modified{
+        margin-top: 30px;
+    }
+    
+    .pageSliderItem .heroH1Modified~p{
+        margin-bottom: 50px;
+    }
+    
+    .pageSliderItem .heroH1Default, .pageSliderItem .heroH1Modified{
+        font-size: 45px;
+        max-width: 400px;
+        /* background-color: red; */
+    }
+    /* Removing ::after hover effect */
+    .pageSliderItem h1::before,.pageSliderItem h1::after{
+        content: none;
+    }
+    
+    .pageSliderItem .heroSectionCTA{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 0;
+    }
+    
+    .pageSliderItem .heroSectionCTA a{
+        width: 100%;
+        max-width: 140px;
+        font-size: 12px;
+    }
+    
+    /* This style goes for all the buttons with this effect */
+    .buttonStyle1{
+        height: 40px;
+        transition: none;
+    }
+    
+    /* Removing hover, before or after effects */
+    .buttonStyle1:hover{
+        border: none;
+        color: #000000;
+    }
+    
+    .buttonStyle1 span{
+        width: 100%;
+        z-index: 5;
+    }
+    
+    .buttonStyle1::before{
+        content: none;
+        transition: none;
+    }
+    
+    .buttonStyle2{
+        height: 40px;
+        transition: none;
+    }
+    
+        .buttonStyle2:hover{
+            border: 2px solid rgba(255, 255, 255, 0);
+            color: #D3B037;
+        }
+    
+        .buttonStyle2::before{
+            content: none;
+            transition: none;
+        }
+        
+        /* Reposition and fitting mini gallery items to match the responsive view */
+        .miniGallery{
+            gap: 20px;
+        }
+    
+        .miniGalleryImgContainerBorder{
+            width: 60px;
+            height: 60px;
+        }
+   
+        .miniGalleryImgContainer{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: inherit;
+            height: inherit;
+            overflow: hidden;
+            z-index: 2;
+        }
+    
+        .miniGalleryImgContainer img{
+            width: 120px;
+    
+        }
+    
+    .landingPage .dots{
+        display: flex;
+        flex-direction: row;
+        top: 500px;
+        height: 20px;
+        /* background-color: red; */
+    }    
+
+    .modal {
+        gap: 20px;
+    }
+
+    .modalTitle{
+        position: relative;
+        top: 5%;
+        left: 5%;
+        z-index: 1;
+        font-family: 'Just', sans-serif;
+        font-size: 20px;
+        font-weight: bolder;
+        color: #D3B037;
+        padding: 10px 20px;
+        /* background-color: black; */
+    }
+    
+    .modal-content-images{
+        height: auto;
+    }
+    .modal-images img {
+        width: 100%;
+        padding: 10px;
+    }
+    .image-thumbnails img {
+        width: 100px;
+        border: 2px solid transparent;
+        transition: none;
+    }
+    .image-thumbnails img:hover{
+        border-color: transparent;
+    } 
+    .image-thumbnails img.active {
+        border-color: #D3B037;
+    }
+    .modal .close {
+        background-color: #D3B037;
+    }
+    .modal .prev-btn { left: 3vw; }
+    .modal .next-btn { right: 3vw; }
+
+    /* Accommodation Section Responsive styling*/
+    .accommodationSection{
+        padding: 30px 15px;
+        min-height: 50vh;
+    }
+
+    .accommodationSectionHeader{
+        font-size: 25px;
+    }
+    .accommodationSectionHeader::before, .accommodationSectionHeader::after{
+        content: none;
+    }
+    .accommodationSectionHeader+p{
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .accommodationsContainer{
+        justify-content: center;
+    }
+    
+    .accommodationTypes{
+        min-width: 150px;
+        width: 150px;
+        height: 225px;
+        flex-grow: 1;
+    }
+    .accommodationTypesImgContainer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100px;
+        flex-grow: 1;
+    }
+    .accommodationTypesImgContainer img{
+        width: 180px;
+        flex-grow: 1;
+    }
+    
+    .accommodationInfo{
+        padding: 10px 10px;
+    }
+    
+    .accommodationTypesTitle{
+        font-size: 12px;
+    }
+    
+    .accommodationTypesContent{
+        font-size: 9px;
+        margin-bottom: 0;
+    }
+    
+    .accommodationTypesPrice{
+        font-size: 12px;
+    }
+    
+    .accomodationTypesBtn{
+        height: 30px;
+        font-size: 9px;
+        border: 2px solid #00000000;
+    }
+    .accomodationTypesBtn:hover{
+        border: 2px solid #00000000;
+    }
+    .accomodationTypesBtn:active{
+        transform: translate(2px, 2px);
+    }
+    .accomodationTypesBtn::after{
+        content: none;
+    }
+    .accomodationTypesBtn:hover::after{
+        transform: translateY(0px);
+    }
+
+    .viewAllRoomsBtn{
+        width: 150px;
+        height: 30px;
+        background-color: #CCB67D;
+        align-self: center;
+        font-family: 'Open Sans',sans-serif;
+    }
+
+    .viewAllRoomsBtn span{
+        font-size: 12px;
+    }
+
+    /* Services Section responsive styling */
+    .serviceSection{
+        background-color: #202020;
+        padding: 10px;
+    }
+    
+    .servicesSectionHeader{
+        font-size: 28px;
+        color: #CCB67D;
+        padding: 50px 40px;
+    }
+    
+    /* Lines by both side which you see on the header */
+    .servicesSectionHeader::before, .servicesSectionHeader::after{
+        content: none;
+    }
+    
+    .servicesOfferedContainer{
+        gap: 10px;
+    }
+    
+    .servicesOffered{
+        min-width: 200px;
+        padding: 10px 20px;
+        width: 150px;
+        height: 200px;
+        gap: 3px;
+    }
+    .servicesOffered:hover{
+        background-color: #CCB67D;
+        color: black;
+    }
+    .servicesOffered:hover .servicesIcon{
+        color: black;
+    }
+    .SOclickToViewTxt{
+        display: none;
+    }
+    
+    .servicesIcon{
+        color: white;
+        width: 30px;
+        margin-bottom: 5px;
+        transition: 0.5s ease 0.1s;
+    }
+    .tech{
+        width: 50px;
+        margin-bottom: 0;
+    
+    }
+    .servicesOffered h2{
+        font-size: 14px;
+        text-align: center;
+    }
+    .servicesOffered p{
+        font-size: 10px;
+        text-align: center;
+    }
+    
+    /* Services Modal */    
+    .serviceModalBody{
+        height: 500px;
+        width: 400px;
+        padding: 20px;
+    }
+    
+    .servicesModal .servicesModalCloseBtn {
+        top: 10px;
+        right: 20px;
+        transition: 0.1s ease;
+    }
+    /* modal close button hover effect */
+    .servicesModal .servicesModalCloseBtn:hover{
+        background-color: #CCB67D;
+        color: white;
+    }
+    
+    .servicesModalTitle{
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .servicesModalDescriptionList dt{
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .servicesModalDescriptionList dd{
+        margin: 0 0 20px 20px;
+        font-size: 14px
+    }
+    
+    .servicesModalContent::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    .servicesModalContent::-webkit-scrollbar-track {
+        background-color: transparent;
+        /* border-radius: 10px; */
+    }
+    .servicesModalContent::-webkit-scrollbar-thumb {
+        background: #515151;
+        /* border-radius: 10px; */
+    }
+    .servicesModalContent::-webkit-scrollbar-thumb:hover {
+        background: white;
+      }
+
+      /* Reveiw Page Styling */
+    .reviewsPageContent{
+        width: 90%;
+        padding: 40px 40px 20px 40px;
+        height: 90%;
+    }
+    
+    .reviewMiniHeader{
+        font-size: 13px;
+    }
+    .reviewsHeader{
+        font-size: 20px;
+    }    
+    .starRatingIcon{
+        width: 30px !important;
+        margin-bottom: 20px;
+    }
+    
+    .customerReview{
+        font-size: 14px;
+        width: 90%;
+    }
+
+    .clientInfo{
+        position: relative;
+    }
+
+    .clientImgContainer{
+        width: 40px;
+        height: 40px;
+    }
+    
+    .clientImgContainer img{
+        width: 75px;
+    }
+    .ClientName{
+        font-size: 14px;
+    }
+    .clientType{
+        font-size: 12px;
+        color: #909090;
+    }
+    .reviewPageNavDots{
+        position: absolute;
+        flex-direction: column;
+        top: 35%;
+        right: 20px;
+        gap: 30px;
+    }
+
+    /* Changing responsive Animation */
+    @keyframes reviewPageNavDotsAnim {
+        0%{
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        100%{
+            opacity: 1;
+            transform: translateX(0px);
+    
+        }
+    }
+
+    /* Contact Page Responsive Styling */
+    .contactHeader{
+        font-size: 40px;
+    }
+    .contactHeader::before, .contactHeader::after{
+        height: 4px;
+    }
+    .contactHeaderContent{
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    .contactExperienceUs{
+        font-size: 27px;
+        margin-bottom: 10px;
+    }
+    .contactCallUsNow{
+        font-size: 20px;
+    }
+    .contactPhoneNo{
+        font-size: 30px;
+    }
+    
+}
+
+@media (max-width:500px) {
+    .servicesOffered{
+        min-width: 150px;
+        padding: 10px 20px;
+        width: 150px;
+        height: 200px;
+        gap: 3px;
+    }
+    
+    /* Services Modal */
+    
+    .serviceModalBody{
+        height: 500px;
+        width: 300px;
+        padding: 20px;
+    }
+    
+    .servicesModal .servicesModalCloseBtn {
+        top: -40px;
+        right: 0;
+        transition: 0.1s ease;
+    }
+
+     /* About Us Section */
+     .aboutUsPage{
+        padding: 40px 20px;
+    }
+
+    .aboutUsHeader{
+        padding: 0;
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+    .aboutUsPageTopLeft{
+        padding: 0 10px;
+        flex-shrink: 0;
+    }
+
+    .aboutUsPageTopLeftHeader{
+        font-size: 25px;
+    }
+
+    .aboutUSPageTopLeftContentContainer{
+        font-size: 13px;
+    }
+
+    .aboutUSPageTopLeftContentContainer p{
+        padding-right: 0;
+    }
+
+    .aboutUsPageTopRight{
+        display: none;
+    }
+
+    .aboutUsPageTopLeftButton{
+        width: 150px;
+        font-size: 13px;
+    }
+
+    .aboutUsPageBottom{
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .aboutUsPageBottomContentContainer{
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px;
+        width: 100px;
+        height: 100px;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .aboutUsPageBottomContentTitle{
+        font-size: 16px;
+    }
+    .aboutUsPageBottomContent{
+        font-size: 10px;
+        text-align: center;
+    }
+
+    /* Contact Page Responsive Design */
+    .contactHeader::before, .contactHeader::after{
+        content: none;
+    }
+   
+    /* Location Page styling */
+    .locationPage{
+        min-height: 80vh;
+    }
+
+    .locationPageHeader{
+        font-size: 20px;
+    }
+    .locationPageHeader::after{
+        content: none;
+    }
+    
+    .locationForm{
+        justify-content: left;
+        align-items: flex-end;
+        gap: 30px;
+    }
+    
+    .locationForm p{
+        text-align: left;
+    }
+    
+    .searchLocation{
+        width: 100%;
+        font-size: 16px;
+    }
+    
+    .locationInfoContainer{
+        position: relative;
+        top: 0;
+        right: 0;
+        margin-right: auto;
+        text-align: right;
+    }
+    
+    .locationDistance{
+        font-size: 30px;
+    }
+    
+    .locationArea{
+        font-size: 14px;
+    }
+    
+    .googleMapsContainer{
+        width: 100%;
+        height: 250px;
+    }
+    
+    
+    .mapPrompt{
+        width: 300px;
+        height: 160px;
+        top: 120px;
+    }
+    
+    .mapPrompt h2{
+        align-self: center;
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    .mapUserResponseBtn{
+        width: 50px;
+        height: 40px;
+    }
+    
+    .mapUserResponseBtn#mapUserResponseYesBtn{
+        width: 70px;
+        margin-left: 20px;
+    }
+
+    /* Footer Responsive Styling */
+    .footerBottomEnd{
+        font-size: 14px;
+    }
+
+    .footerBottomEnd .Copyright{
+        text-align: center;
+        border-right: 0 solid white;
+        padding: 0 20px;
+    }
+}
